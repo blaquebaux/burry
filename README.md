@@ -28,7 +28,7 @@ out-of-favor and heavily-shorted names, hard assets over narrative. We treat the
 *label*, decompose it into factor exposures, and test whether that exposure still carries a premium
 **net of cost** — and whether the contrarian short leg is a real edge or a widow-maker.
 
-## Research plan (Path A — not yet built)
+## Research plan (Path A)
 
 - **Decompose the book.** Map the disclosed 13F positions onto factor exposures (value, quality,
   size, low-beta, "hatedness" = short interest / days-to-cover). What *style* is Burry, in numbers?
@@ -41,11 +41,35 @@ out-of-favor and heavily-shorted names, hard assets over narrative. We treat the
 - **Concentration vs. governance.** Burry runs a handful of large bets; the engine's crowding and
   single-name caps are the opposite instinct. Study the trade-off explicitly.
 
-Nothing above is implemented or validated. This is the map, not the territory.
+## Research — first pass done
+
+Full detail in [`research/README.md`](research/README.md). The scorecard (Alpaca SIP, 2016–2026;
+price-only proxies — no 13F/fundamentals):
+
+| # | Question | Verdict |
+|---|----------|---------|
+| 1 | What is the style, in numbers? | ⚠️ half-legend — value pillars are ~1.0 beta / +0.6 corr-to-momentum (equity beta); no pillar beats SPY; only **gold** (+0.83 Sharpe, 0.08 beta) genuinely diversifies |
+| 2 | Does buying the *hated* pay? | ❌ null — worst-3y +0.76 < loved +0.83 < equal-wt +0.86 < SPY +0.89; long/short spread Sharpe −0.00 |
+| 3 | Is fading froth an edge? | ❌ regime, not edge — short-ARKK −27%/yr, −98% DD full period; +86% only in 2022; timed version still −0.75 |
+| 4 | Concentration vs governance? | ❌ top-1 +19.9% CAGR but 44% vol / −58% DD / worse ret-per-DD than diversified — a ruin machine |
+
+**The synthesis:** you cannot systematize Burry, and the honest attempt says so cleanly. The
+"contrarian, anti-momentum" value pillars are really ~1.0 beta / +0.6 momentum-correlated equity beta
+(none beat the market); buying the deeply hated (long-term reversal) is a flat null; the signature
+short of froth is a −98%-drawdown widow-maker that pays only in the 2022 unwind (the base's *"you
+cannot fade the prop"* law); and concentration lifts return and drawdown together, worsening
+risk-adjusted return — a ruin machine at top-1. His edge is discretionary timing + conviction +
+concentration, precisely what a governed process bounds *away*. What survives is not a Burry sleeve but
+two things the family already has: **hard-asset diversification** (gold) and **tail insurance**
+([Bleed](https://github.com/blaquebaux/bleed)). Burry joins
+[Brute-Force](https://github.com/blaquebaux/brute-force) and
+[Backsliders](https://github.com/blaquebaux/backsliders) on the honest shelf.
 
 ## Status
-**Concept.** Thesis and research plan only — no sketches run, no driver, nothing validated to the
-spine's bar. A lens on a famous book, to be tested like everything else here.
+**Research: first pass complete — a cautionary null** (`research/`). The style is mostly beta, the
+contrarian entry nulls out, the short is regime/ruin, and the concentration is uninvestable as process.
+Tradable residue (gold, Bleed) already exists elsewhere in the family. No keeper, no live driver;
+nothing validated to the spine's bar.
 
 ## About Blaque Baux
 
@@ -67,7 +91,7 @@ base/blueprint and holds the [full family roster](https://github.com/blaquebaux/
 ## Layout
 ```
 engine/     the Blaque Baux platform (git submodule -> blaquebaux/base)
-research/   the research plan (Path A) — sketches land here once run
+research/   four Path-A sketches (pillars, reversal, froth-short, concentration) + scorecard
 live/       governed live drivers (once a sleeve graduates to paper A/B)
 ```
 
